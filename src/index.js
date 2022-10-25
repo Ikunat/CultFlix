@@ -1,24 +1,17 @@
 const express = require("express");
-const typeorm = require("typeorm");
-const Anime = require("./entity/Anime");
+const animeController = require("./controller/anime");
 
-const dataSource = new typeorm.DataSource({
-  type: "sqlite",
-  database: "./animesdb.sqlite",
-  synchronize: true,
-  entities: [Anime],
-});
-
+const dataSource = require("./db");
 const app = express();
 
-app.get("/hello", (req, res) => {
-  console.log("Ohayo Sensei !");
-  res.send("Ohayo !");
-});
+app.use(express.json());
+
+app.post("/api/anime", animeController.create);
+app.get("/api/anime", animeController.read);
 
 const start = async () => {
   await dataSource.initialize();
-  dataSource.getRepository(Anime).save({ name: "Hunter X Hunter" });
+
   app.listen(3000, () => {
     console.log("Listening on port 3000");
   });

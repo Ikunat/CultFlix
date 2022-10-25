@@ -1,0 +1,15 @@
+POST http://localhost:3000/api/anime
+Content-Type: application/json
+
+{
+    "name": "Cowboy Bebop"
+}
+
+###
+
+GET http://localhost:3000/api/anime
+Content-Type: application/json
+
+{
+    "name": "Hunter X Hunter"
+}
