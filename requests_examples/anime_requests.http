@@ -1,29 +1,23 @@
-POST http://localhost:3000/api/anime
+POST http://localhost:3000/animes
 Content-Type: application/json
 
 {
-    "name": "SNK"
+    "name": "One Punch Man"
 }
 
 ###
 
-GET http://localhost:3000/api/anime
+GET http://localhost:3000/animes
 
 ###
 
-PATCH http://localhost:3000/api/anime
+PATCH http://localhost:3000/animes/8
 Content-Type: application/json
 
 {
-    "id": 8,
     "name": "Shingeki no Kyojin"
 }
 
 ###
 
-DELETE http://localhost:3000/api/anime
-Content-Type: application/json
-
-{
-    "id": 9
-}
+DELETE http://localhost:3000/animes/10

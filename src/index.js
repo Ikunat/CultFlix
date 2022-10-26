@@ -6,10 +6,10 @@ const app = express();
 
 app.use(express.json());
 
-app.post("/api/anime", animesController.create);
-app.get("/api/anime", animesController.read);
-app.patch("/api/anime", animesController.update);
-app.delete("/api/anime", animesController.delete);
+app.post("/animes", animesController.create);
+app.get("/animes", animesController.read);
+app.patch("/animes/:id", animesController.update);
+app.delete("/animes/:id", animesController.delete);
 
 const start = async () => {
   await dataSource.initialize();
