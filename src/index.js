@@ -1,13 +1,15 @@
 const express = require("express");
-const animeController = require("./controller/anime");
+const animesController = require("./controller/animes");
 
 const dataSource = require("./db");
 const app = express();
 
 app.use(express.json());
 
-app.post("/api/anime", animeController.create);
-app.get("/api/anime", animeController.read);
+app.post("/api/anime", animesController.create);
+app.get("/api/anime", animesController.read);
+app.patch("/api/anime", animesController.update);
+app.delete("/api/anime", animesController.delete);
 
 const start = async () => {
   await dataSource.initialize();

@@ -2,14 +2,28 @@ POST http://localhost:3000/api/anime
 Content-Type: application/json
 
 {
-    "name": "Cowboy Bebop"
+    "name": "SNK"
 }
 
 ###
 
 GET http://localhost:3000/api/anime
+
+###
+
+PATCH http://localhost:3000/api/anime
 Content-Type: application/json
 
 {
-    "name": "Hunter X Hunter"
+    "id": 8,
+    "name": "Shingeki no Kyojin"
+}
+
+###
+
+DELETE http://localhost:3000/api/anime
+Content-Type: application/json
+
+{
+    "id": 9
 }
