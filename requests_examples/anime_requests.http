@@ -2,7 +2,7 @@ POST http://localhost:3000/animes
 Content-Type: application/json
 
 {
-    "name": "One Punch Man"
+    "name": "Gintama"
 }
 
 ###
@@ -11,7 +11,7 @@ GET http://localhost:3000/animes
 
 ###
 
-PATCH http://localhost:3000/animes/8
+PATCH http://localhost:3000/animes/13
 Content-Type: application/json
 
 {
@@ -20,4 +20,4 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:3000/animes/10
+DELETE http://localhost:3000/animes/11
