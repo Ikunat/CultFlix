@@ -1,0 +1,23 @@
+POST http://localhost:3000/tags
+Content-Type: application/json
+
+{
+    "name": "John"
+}
+
+###
+
+GET http://localhost:3000/tags
+
+###
+
+PATCH http://localhost:3000/tags/4
+Content-Type: application/json
+
+{
+    "name": "Shonen Life FTW"
+}
+
+###
+
+DELETE http://localhost:3000/tags/4

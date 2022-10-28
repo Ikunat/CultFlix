@@ -1,9 +1,7 @@
-const { ManyToOne } = require("typeorm");
-
 const EntitySchema = require("typeorm").EntitySchema;
 
 module.exports = new EntitySchema({
-  name: "Anime",
+  name: "Tag",
   columns: {
     id: {
       primary: true,
@@ -12,14 +10,7 @@ module.exports = new EntitySchema({
     },
     name: {
       type: "text",
-    },
-  },
-  relations: {
-    tags: {
-      target: "Tag",
-      type: "many-to-many",
-      joinTable: true,
-      eager: true,
+      unique: true,
     },
   },
 });

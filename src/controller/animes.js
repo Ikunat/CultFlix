@@ -13,10 +13,8 @@ module.exports = {
     }
 
     try {
-      const animeJustCreated = await dataSource
-        .getRepository(Anime)
-        .save({ name });
-      res.status(201).send(animeJustCreated);
+      const newAnime = await dataSource.getRepository(Anime).save({ name });
+      res.status(201).send(newAnime);
     } catch (err) {
       console.log(err);
       res.send("error, tcheck your code");
@@ -35,10 +33,9 @@ module.exports = {
 
   update: async (req, res) => {
     const { name } = req.body;
-    if (name.length > 100 || name.length === 0) {
+    if (name.length > 100 || name.length === 0)
       // Le return met fin à la lecture du code, et évite de devoir mettre un else à la fin du if
       return res.status(422).send("the name you entered is incorrect");
-    }
 
     try {
       const { affected } = await dataSource
@@ -69,5 +66,13 @@ module.exports = {
       console.log(err);
       res.send("error, tcheck your code");
     }
+  },
+
+  addTag: async (req, res) => {
+    const { name } = req.body;
+    if (name.length > 100 || name.length === 0)
+      return res.status(422).send("Invalid Tag, try again");
+    try {
+    } catch {}
   },
 };
