@@ -1,1 +1,1 @@
-Rework of school project into personal project
+Little Application in React
