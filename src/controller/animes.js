@@ -1,5 +1,6 @@
 const dataSource = require("../db");
 const Anime = require("../entity/Anime");
+const Tag = require("../entity/Tag");
 
 module.exports = {
   // req -> requête du client au serveur, ici ce sont les requêtes http
@@ -69,10 +70,33 @@ module.exports = {
   },
 
   addTag: async (req, res) => {
-    const { name } = req.body;
-    if (name.length > 100 || name.length === 0)
+    const animeToTag = await dataSource
+      .getRepository(Anime)
+      .findOneBy({ id: req.params.animeId });
+
+    if (!animeToTag) return res.status(404).send("Anime not found");
+    console.log(animeToTag);
+
+    const tagToAdd = await dataSource
+      .getRepository(Tag)
+      .findOneBy({ id: req.body.tagId });
+
+    if (!tagToAdd) return res.status(404).send("Tag not found");
+    console.log(tagToAdd);
+
+    animeToTag.tags = [...animeToTag.tags, tagToAdd];
+
+    await dataSource.getRepository(Anime).save(animeToTag);
+
+    res.send(animeToTag);
+
+    /*  const { name } = req.body;
+    if (name.length > 100 || name.length === 0 || name === )
       return res.status(422).send("Invalid Tag, try again");
     try {
-    } catch {}
+      res.send("All good");
+    } catch {
+      res.send("Something Wrong");
+    } */
   },
 };

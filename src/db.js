@@ -7,4 +7,5 @@ module.exports = new typeorm.DataSource({
   database: "./animesdb.sqlite",
   synchronize: true,
   entities: [Anime, Tag],
+  logging: ["query", "error"],
 });
