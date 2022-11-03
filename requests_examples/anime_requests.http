@@ -21,3 +21,14 @@ Content-Type: application/json
 ###
 
 DELETE http://localhost:3000/animes/11
+
+
+
+###
+// Add a tag to an anime
+POST http://localhost:3000/animes/1/tags
+Content-Type: application/json
+
+{
+    "tagId": 1
+}

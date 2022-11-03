@@ -1,5 +1,6 @@
 const dataSource = require("../db");
 const Anime = require("../entity/Anime");
+const Tag = require("../entity/Tag");
 
 module.exports = {
   // req -> requête du client au serveur, ici ce sont les requêtes http
@@ -13,10 +14,8 @@ module.exports = {
     }
 
     try {
-      const animeJustCreated = await dataSource
-        .getRepository(Anime)
-        .save({ name });
-      res.status(201).send(animeJustCreated);
+      const newAnime = await dataSource.getRepository(Anime).save({ name });
+      res.status(201).send(newAnime);
     } catch (err) {
       console.log(err);
       res.send("error, tcheck your code");
@@ -35,10 +34,9 @@ module.exports = {
 
   update: async (req, res) => {
     const { name } = req.body;
-    if (name.length > 100 || name.length === 0) {
+    if (name.length > 100 || name.length === 0)
       // Le return met fin à la lecture du code, et évite de devoir mettre un else à la fin du if
       return res.status(422).send("the name you entered is incorrect");
-    }
 
     try {
       const { affected } = await dataSource
@@ -69,5 +67,36 @@ module.exports = {
       console.log(err);
       res.send("error, tcheck your code");
     }
+  },
+
+  addTag: async (req, res) => {
+    const animeToTag = await dataSource
+      .getRepository(Anime)
+      .findOneBy({ id: req.params.animeId });
+
+    if (!animeToTag) return res.status(404).send("Anime not found");
+    console.log(animeToTag);
+
+    const tagToAdd = await dataSource
+      .getRepository(Tag)
+      .findOneBy({ id: req.body.tagId });
+
+    if (!tagToAdd) return res.status(404).send("Tag not found");
+    console.log(tagToAdd);
+
+    animeToTag.tags = [...animeToTag.tags, tagToAdd];
+
+    await dataSource.getRepository(Anime).save(animeToTag);
+
+    res.send(animeToTag);
+
+    /*  const { name } = req.body;
+    if (name.length > 100 || name.length === 0 || name === )
+      return res.status(422).send("Invalid Tag, try again");
+    try {
+      res.send("All good");
+    } catch {
+      res.send("Something Wrong");
+    } */
   },
 };
