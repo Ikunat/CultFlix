@@ -3,7 +3,7 @@ const { ManyToOne } = require("typeorm");
 const EntitySchema = require("typeorm").EntitySchema;
 
 module.exports = new EntitySchema({
-  name: "Anime",
+  name: "Movie",
   columns: {
     id: {
       primary: true,

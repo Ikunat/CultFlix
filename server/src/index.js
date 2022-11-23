@@ -1,5 +1,5 @@
 const express = require("express");
-const animesController = require("./controller/animes");
+const moviesController = require("./controller/movies");
 const tagsController = require("./controller/tags");
 
 const dataSource = require("./db");
@@ -7,11 +7,11 @@ const app = express();
 
 app.use(express.json());
 
-app.post("/animes", animesController.create);
-app.get("/animes", animesController.read);
-app.patch("/animes/:id", animesController.update);
-app.delete("/animes/:id", animesController.delete);
-app.post("/animes/:animeId/tags/", animesController.addTag);
+app.post("/movies", moviesController.create);
+app.get("/movies", moviesController.read);
+app.patch("/movies/:id", moviesController.update);
+app.delete("/movies/:id", moviesController.delete);
+app.post("/movies/:animeId/tags/", moviesController.addTag);
 
 app.post("/tags", tagsController.create);
 app.get("/tags", tagsController.read);

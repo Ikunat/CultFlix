@@ -1,11 +1,11 @@
 const typeorm = require("typeorm");
-const Anime = require("./entity/Anime");
+const Movie = require("./entity/Movie");
 const Tag = require("./entity/Tag");
 
 module.exports = new typeorm.DataSource({
   type: "sqlite",
-  database: "./animesdb.sqlite",
+  database: "./moviesdb.sqlite",
   synchronize: true,
-  entities: [Anime, Tag],
+  entities: [Movie, Tag],
   logging: ["query", "error"],
 });

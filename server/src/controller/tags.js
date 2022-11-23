@@ -19,8 +19,8 @@ module.exports = {
 
   read: async (req, res) => {
     try {
-      const animeList = await dataSource.getRepository(Tag).find();
-      res.send(animeList);
+      const moviesList = await dataSource.getRepository(Tag).find();
+      res.send(moviesList);
     } catch (err) {
       console.log(err);
       res.send("Error while looking for tags");
