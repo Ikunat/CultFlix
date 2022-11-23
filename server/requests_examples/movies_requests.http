@@ -25,7 +25,7 @@ DELETE http://localhost:3000/movies/11
 
 
 ###
-// Add a tag to an anime
+// Add a tag to a movie
 POST http://localhost:3000/movies/1/tags
 Content-Type: application/json
 
