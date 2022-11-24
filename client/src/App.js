@@ -1,27 +1,38 @@
-import logo from "./logo.svg";
+//import logo from "./logo.svg";
 import styles from "./App.module.css";
 import "./App.css";
+import Movie from "./components/Movie";
 
 function App() {
+  const movies = [
+    {
+      id: 1,
+      name: "Dark Waters",
+      tags: [
+        {
+          id: 1,
+          name: "Thriller",
+        },
+      ],
+    },
+    {
+      id: 2,
+      name: "VICE",
+      tags: [
+        {
+          id: 1,
+          name: "Thriller",
+        },
+      ],
+    },
+  ];
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <p className={styles.testp}>
-          This paragraph is just a test of CSS modules
-        </p>
-      </header>
+      <p moduleCssExample className={`${styles}`}></p>
+      {movies.map((movie) => (
+        <Movie key={movie.id} name={movie.name} tags={movie.tags} />
+      ))}
     </div>
   );
 }
