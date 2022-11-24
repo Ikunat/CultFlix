@@ -1,5 +1,3 @@
-const { ManyToOne } = require("typeorm");
-
 const EntitySchema = require("typeorm").EntitySchema;
 
 module.exports = new EntitySchema({

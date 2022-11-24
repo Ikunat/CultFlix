@@ -1,4 +1,5 @@
 const express = require("express");
+const movies = require("./controller/movies");
 const moviesController = require("./controller/movies");
 const tagsController = require("./controller/tags");
 
@@ -11,7 +12,8 @@ app.post("/movies", moviesController.create);
 app.get("/movies", moviesController.read);
 app.patch("/movies/:id", moviesController.update);
 app.delete("/movies/:id", moviesController.delete);
-app.post("/movies/:animeId/tags/", moviesController.addTag);
+app.post("/movies/:movieId/tags/", moviesController.addTag);
+app.delete("/movies/:movieId/tags/:tagId", moviesController.deleteTag);
 
 app.post("/tags", tagsController.create);
 app.get("/tags", tagsController.read);

@@ -25,10 +25,15 @@ DELETE http://localhost:3000/movies/11
 
 
 ###
-// Add a tag to an anime
-POST http://localhost:3000/movies/1/tags
+// Add a tag to a movie
+POST http://localhost:3000/movies/3/tags
 Content-Type: application/json
 
 {
     "tagId": 1
 }
+
+###
+// Delete a tag of a movie
+DELETE http://localhost:3000/movies/2/tags/2
+Content-Type: application/json

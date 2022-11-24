@@ -8,6 +8,14 @@ module.exports = {
     console.log({ name });
     if (name.length > 100 || name.length === 0)
       return res.status(422).send("Invalid name, try again");
+
+    // Soit on trouve un {name} déjà existant en bdd, soit la valeur est undefined
+    const existingTag = await dataSource.getRepository(Tag).findOneBy({ name });
+
+    // Si le {name} existe en bdd, on renvoit une erreur
+    if (existingTag)
+      return res.status(409).send("This tag already exists, try another one");
+
     try {
       const newTag = await dataSource.getRepository(Tag).save({ name });
       res.status(201).send(newTag);
