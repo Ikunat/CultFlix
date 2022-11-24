@@ -89,14 +89,21 @@ module.exports = {
     await dataSource.getRepository(Movie).save(movieToTag);
 
     res.send(movieToTag);
+  },
 
-    /*  const { name } = req.body;
-    if (name.length > 100 || name.length === 0 || name === )
-      return res.status(422).send("Invalid Tag, try again");
-    try {
-      res.send("All good");
-    } catch {
-      res.send("Something Wrong");
-    } */
+  deleteTag: async (req, res) => {
+    const movieConcerned = await dataSource
+      .getRepository(Movie)
+      .findOneBy({ id: req.params.movieId });
+    if (!movieConcerned) return res.status(404).send("Movie not found");
+    const tagToDeleteId = parseInt(req.params.tagId, 10);
+    console.log(tagToDeleteId);
+    if (!tagToDeleteId) return res.status(404).send("Tag not found");
+    movieConcerned.tags = movieConcerned.tags.filter(
+      (tag) => tag.id !== tagToDeleteId
+    );
+
+    await dataSource.getRepository(Movie).save(movieConcerned);
+    res.send("Tag deleted from movie");
   },
 };
